@@ -1,0 +1,2 @@
+# Should hold current config-example.toml for protocol version.
+# This will have local IP added to make config.toml with casper-node-launcher's config_from_example.sh script.
