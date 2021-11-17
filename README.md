@@ -24,14 +24,13 @@ to continue with consensus.
 create a `config.toml` file on the server. This is done automatically with the `config_from_example.sh` 
 script distributed with `casper-node-launcher` packages.
 
+Other files may be included with `config.tar.gz` as needed for upgrade or additional functionality of the system.
+
 # bin.tar.gz - bin_rpm.tar.gz
 
 The `bin.tar.gz` package holds a `casper-node` binary compiled for Ubuntu 18.04/20.04.
 
 The `bin_rpm.tar.gz` package holds a `casper-node` binary compiled for CentOS 8 / RHEL 8.
-
-This will be downloaded with `pull_casper_node_version.sh` distributed with `casper-node-launcher` and 
-expanded into `/var/lib/casper/bin/<protocol_version>/`.
 
 In addition to the appropriate `casper-node` binary a `README.md` file is included which identifies both 
 the platform targeted, and the github source for compilation. 
