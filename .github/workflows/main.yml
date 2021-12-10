@@ -1,0 +1,26 @@
+name: Config release
+
+on:
+  push:
+    tags: 
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Packaging config.tar.gz
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'tar'
+        filename: 'config.tar.gz'
+        path: "config"
+
+    - name: Creating release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "config.tar.gz"
+        token: ${{ secrets.GITHUB_TOKEN }}
