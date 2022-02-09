@@ -24,3 +24,4 @@ jobs:
       with:
         artifacts: "config.tar.gz"
         token: ${{ secrets.GITHUB_TOKEN }}
+        removeArtifacts: true
