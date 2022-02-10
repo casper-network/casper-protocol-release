@@ -12,7 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
-## [1.1.0] - 347 (1.1.1-9583f902)
+## 1.1.2 - 574
+### casper-node 1.1.2-a2679a4f
+
+## Changed
+* chainspec.toml
+  * protocol.version
+  * protocol.activation_point
+
+## 1.1.0 - 347
+### casper-node 1.1.1-9583f902
 
 ### Added
 * chainspec.toml
@@ -21,13 +30,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 * chainspec.toml
+  * protocol.version
   * protocol.hard_reset set to true
+  * protocol.activation_point
   * system_costs.auction_costs.add_bid set to 2_500_000_000
   * system_costs.auction_costs.delegate set to 2_500_000_000
 * config-example.toml
   * network.known_addresses updated
 
-## [1.0.0] - 2021-03-31 15:00:00 UTC (1.0.0-31d7de47)
+## 1.0.0 - 2021-03-31 15:00:00 UTC 
+### casper-node 1.0.0-31d7de47
 
 ### Added
 * Genesis accounts.toml, chainspec.toml, config-example.toml
