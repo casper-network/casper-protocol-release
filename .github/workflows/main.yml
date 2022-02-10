@@ -23,4 +23,5 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "config.tar.gz"
+        allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
