@@ -12,6 +12,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.2.0 - 694
+### csper-node 1.2.0-58912c93
+
+## Changed
+* chainspec.toml
+  * protocol.version
+  * protocol.activation_point
+  * 
+
 ## 1.1.2 - 574
 ### casper-node 1.1.2-a2679a4f
 
@@ -19,6 +28,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * chainspec.toml
   * protocol.version
   * protocol.activation_point
+  * network.known_addresses
+  * consensus.highway (large number of fields)
 
 ## 1.1.0 - 347
 ### casper-node 1.1.1-9583f902
