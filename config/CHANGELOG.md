@@ -12,6 +12,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.4.3 - 3111
+### casper-node 1.4.3-a44bed1fd-casper-mainnet
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * wasm
+    * max_stack_height from 65_536 to 188
+    * host_function_costs
+      * transfer_from_purse_to_account from 160_000 to 2_500_000_000
+      * transfer_to_account from 24_000 to 2_500_000_000
+* config-example.toml
+  * network
+    * known_addresses
+  * contract_runtime
+    * max_global_state_size
+## Added
+* chainspec.toml
+  * core
+    * max_runtime_call_stack_height
+
 ## 1.4.1 - 2600
 ### casper-node 1.4.1-c1f1c4df4-casper-mainnet
 
