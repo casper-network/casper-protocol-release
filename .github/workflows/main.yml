@@ -1,9 +1,7 @@
 name: Config release
 
 on:
-  push:
-    tags: 
-      - '*'
+  release
 
 jobs:
   build:
