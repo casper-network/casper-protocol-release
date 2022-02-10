@@ -12,14 +12,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
-## 1.2.0 - 694
-### csper-node 1.2.0-58912c93
+## 1.2.1 - 1281
+### casper-node 1.2.1-b7802f4
 
 ## Changed
 * chainspec.toml
   * protocol.version
   * protocol.activation_point
-  * 
+* config-example.toml
+  * consensus.highway.standstill_timeout from 5 to 60min
+  * network.known_addresses
+
+## 1.2.0 - 694
+### casper-node 1.2.0-58912c93
+
+## Changed
+* chainspec.toml
+  * protocol.version
+  * protocol.activation_point
 
 ## 1.1.2 - 574
 ### casper-node 1.1.2-a2679a4f
