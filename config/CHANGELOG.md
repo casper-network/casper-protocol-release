@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.4.1 - 2369
+### casper-node 1.4.1-dd260c86a-casper-mainnet
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+
+## Removed
+* global_state.toml
+
 ## 1.4.0 - 2346
 ### casper-node 1.4.0-462aa9a59-casper-mainnet
 
