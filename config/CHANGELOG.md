@@ -12,6 +12,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.3.2 - 1605
+### casper-node 1.3.2-e2027dbe9
+
+### Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+* config-example.toml
+  * consensus
+    * highway
+      * standstill_timeout from 5min to 30min
+  * event_stream_server
+    * qps_limit changed to max_concurrent_subscribers
+
+## Added
+* config-example.toml
+  * consensus
+    * highway
+      * shutdown_on_standstill = false
+  * network
+    * max_outgoing_byte_rate_non_validators
+    * max_incoming_message_rate_non_validators
+  * storage
+    * enable_mem_deduplication
+    * mem_pool_prune_interval
+  * linear_chain_sync
+    * sync_timeout
+
+
 ## 1.2.1 - 1281
 ### casper-node 1.2.1-b7802f4
 
