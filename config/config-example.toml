@@ -41,10 +41,10 @@ secret_key_path = '/etc/casper/validator_keys/secret_key.pem'
 unit_hashes_folder = "/var/lib/casper/casper-node"
 
 # The duration for which incoming vertices with missing dependencies should be kept in a queue.
-pending_vertex_timeout = '30min'
+pending_vertex_timeout = '15min'
 
 # If the current era's protocol state has not progressed for this long, shut down.
-standstill_timeout = '30min'
+standstill_timeout = '15min'
 
 # If after another `standstill_timeout` there still was no progress, shut down.
 shutdown_on_standstill = true
@@ -112,10 +112,6 @@ known_addresses = ['3.208.91.63:35000','35.169.197.193:35000']
 
 # The interval (in milliseconds) between each fresh round of gossiping the node's public address.
 gossip_interval = 120_000
-
-# Minimum amount of time that has to pass before attempting to reconnect after losing all
-# connections to established nodes.
-isolation_reconnect_delay = '2s'
 
 # Initial delay for starting address gossipping after the network starts. This should be slightly
 # more than the expected time required for initial connections to complete.
