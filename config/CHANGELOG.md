@@ -12,6 +12,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.3.4 - 1960
+### casper-node 1.3.4-0d28d49
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+* config-example.toml
+  * consensus
+    * highway
+      * pending_vertex_timeout from 30min to 15min
+      * standstill_timeout from 30 min to 15 min
+
+
 ## 1.3.2 - 1389
 ### casper-node 1.3.2-e2027dbe9
 
