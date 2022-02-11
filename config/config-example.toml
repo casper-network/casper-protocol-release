@@ -47,7 +47,7 @@ pending_vertex_timeout = '30min'
 standstill_timeout = '30min'
 
 # If after another `standstill_timeout` there still was no progress, shut down.
-shutdown_on_standstill = false
+shutdown_on_standstill = true
 
 # Log inactive or faulty validators periodically, with this interval.
 log_participation_interval = '1min'
@@ -112,10 +112,6 @@ known_addresses = ['168.119.137.143:35000','47.251.14.254:35000','47.242.53.164:
 
 # The interval (in milliseconds) between each fresh round of gossiping the node's public address.
 gossip_interval = 120_000
-
-# Minimum amount of time that has to pass before attempting to reconnect after losing all
-# connections to established nodes.
-isolation_reconnect_delay = '2s'
 
 # Initial delay for starting address gossipping after the network starts. This should be slightly
 # more than the expected time required for initial connections to complete.
