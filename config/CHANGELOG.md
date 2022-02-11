@@ -12,6 +12,57 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.4.1 - 2600
+### casper-node 1.4.1-c1f1c4df4-casper-mainnet
+
+## Added
+* global_state.toml
+* chainspec.toml
+  * core
+    * max_associated_keys
+* config-example.toml
+  * consensus
+    * highway
+      * log_synchronizer_interval
+      * max_request_batch_size
+  * network
+    * estimator_weights
+  * contract_runtime
+    * enable_manual_sync
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * core
+    * round_seigniorage_rate
+  * highway
+    * minimum_round_exponent
+    * maximum_round_exponent
+  * deploys
+    * block_max_deploy_count
+    * block_max_transfer_count
+  * wasm
+    * host_function_costs
+      * create_purse
+  * system_costs
+    * wasmless_transfer_cost
+    * mint_costs
+      * mint
+      * create
+* config-example.toml
+  * consensus
+    * highway
+      * pending_vertex_timeout from 15min to 30min
+      * standstill_timeout from 15min to 30min
+
+## Removed
+* config-example.toml
+  * consensus
+    * highway
+      * shutdown_on_standstill
+
 ## 1.3.4 - 2193
 ### casper-node 1.3.4-0d28d49
 
