@@ -12,6 +12,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.4.2 - 2680
+### casper-node 1.4.2-930a43774-casper-mainnet
+
+## Added
+* chainspec.toml
+  * core
+    * max_runtime_call_stack_height
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * wasm
+    * host_function_costs
+      * transfer_from_purse_to_account
+      * transfer_to_account
+
 ## 1.4.1 - 2369
 ### casper-node 1.4.1-dd260c86a-casper-mainnet
 
