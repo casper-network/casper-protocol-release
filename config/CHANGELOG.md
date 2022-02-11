@@ -12,13 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Security:   in case of vulnerabilities)
 
 
+## 1.0.0 - 2021-04-09T01:30:00Z
+### casper-node 1.0.0-31d7de47
 
-## [Unreleased]
-
-## Examples
-
-Using genesis time for 1.0.0 protocol version.  All other are Era #
-
-## [1.1.0] - Era: 224
-
-## [1.0.0] - 2021-03-31 04:00:00 UTC
+### Added
+* Genesis files
