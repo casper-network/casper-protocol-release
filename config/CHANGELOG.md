@@ -11,6 +11,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+
+## 1.2.0 - 694
+### casper-node 1.2.0-58912c93
+
+## Added
+* config-example.toml
+  * consensus
+    * highway
+      * standstill_timeout
+      * log_participation_interval
+      * log_unit_sizes
+      * max_requests_for_vertex
+      * round_success_meter
+        * num_rounds_to_consider
+        * num_rounds_slowdown
+        * num_rounds_speedup
+        * acceleration_parameter
+        * acceleration_ftt
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * network
+    * known_addresses
+    
+
 ## 1.1.2 - 574
 ### casper-node 1.1.2-a2679a4f
 
