@@ -314,7 +314,7 @@ verify_accounts = true
 # If unset, defaults to 805,306,368,000 == 750 GiB.
 #
 # The size should be a multiple of the OS page size.
-max_global_state_size = 1099511627776
+max_global_state_size = 1_099_511_627_776
 
 # Optional depth limit to use for global state queries.
 #
@@ -323,8 +323,8 @@ max_global_state_size = 1099511627776
 
 # Enable manual synchronizing to disk.
 #
-# If unset, defaults to false.
-enable_manual_sync = true
+# If unset, defaults to true.
+#enable_manual_sync = true
 
 
 # ========================================================
