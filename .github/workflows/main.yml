@@ -14,9 +14,10 @@ jobs:
     - name: Packaging config.tar.gz
       uses: thedoctor0/zip-release@master
       with:
-        type: 'tar'
-        filename: 'config.tar.gz'
+        type: "tar"
+        filename: "config.tar.gz"
         directory: "config"
+        path: "."
 
     - name: Creating release
       uses: ncipollo/release-action@v1
