@@ -16,7 +16,7 @@ jobs:
       with:
         type: 'tar'
         filename: 'config.tar.gz'
-        path: "config"
+        directory: "config"
 
     - name: Creating release
       uses: ncipollo/release-action@v1
