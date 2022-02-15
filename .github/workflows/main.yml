@@ -12,11 +12,8 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Packaging config.tar.gz
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'tar'
-        filename: 'config.tar.gz'
-        path: "config"
+      run: |
+        tar -cvzf config.tar.gz -C config .
 
     - name: Creating release
       uses: ncipollo/release-action@v1
@@ -24,4 +21,3 @@ jobs:
         artifacts: "config.tar.gz"
         allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
-        removeArtifacts: true
