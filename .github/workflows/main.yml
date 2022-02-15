@@ -1,9 +1,8 @@
 name: Config release
 
 on:
-  push:
-    tags: 
-      - '*'
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -23,5 +22,6 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "config.tar.gz"
+        allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
         removeArtifacts: true
