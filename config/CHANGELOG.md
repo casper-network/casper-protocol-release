@@ -11,6 +11,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.4.6 - 3926
+### casper-node 1.4.5-cfcf35053-casper-mainnet
+
+## Added
+* chainspec.toml
+  * core
+    * max_stored_value_size
+    * minimum_delegation_amount
+  * deploys
+    * block_max_approval_count
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+
 
 ## 1.4.5 - 3234
 ### casper-node 1.4.4-6962edb3d-casper-mainnet
