@@ -12,8 +12,8 @@ if [ "$(whoami)" != "root" ]; then
   exit 1
 fi
 
-if [[ -d "/etc/casper/1_4_4" ]]; then
-   echo "Upgrade 1.4.4 already staged."
+if [[ -d "/etc/casper/1_4_5" ]]; then
+   echo "Upgrade 1.4.5 already staged."
    exit 0
 fi
 
