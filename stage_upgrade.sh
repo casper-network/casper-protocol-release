@@ -2,7 +2,7 @@
 
 set -e
 
-# This script will stage the upgrade files for casper network from 1.4.3 to 1.4.4
+# This script will stage the upgrade files for casper network from 1.4.4 to 1.4.5
 
 if [ "$(whoami)" != "root" ]; then
   echo
