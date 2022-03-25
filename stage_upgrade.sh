@@ -18,7 +18,7 @@ if [[ -d "/etc/casper/1_4_5" ]]; then
 fi
 
 # bump max global state for protocol 1_4_4:
-sudo sed -i "/max_global_state_size =/c\max_global_state_size = 1_539_316_278_886" /etc/casper/1_4_4/config.toml
+sudo sed -i "/max_global_state_size =/c\max_global_state_size = 1_539_316_281_344" /etc/casper/1_4_4/config.toml
 
 CNL_VERSION=$(casper-node-launcher --version | cut -d' ' -f4)
 
