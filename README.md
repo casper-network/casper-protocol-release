@@ -47,18 +47,18 @@ An entry should exist for every protocol version that is needed to currently syn
 a directory should exist with the same underscore protocol name.  This will hold `bin.tar.gz` and `config.tar.gz`.  As
 more host systems are supported, we may expand to include `bin_rpm.tar.gz` and others.
 
-While not present on casper or casper-test hosting, for network that do not have config files distributed with 
-`casper-node-launcher` it is common to offer the conf file for that network in the root.
+While not present on casper or casper-test hosting, because these network configs are included with `casper-node-launcher`,
+a different network should offer the conf file for that network in the same location as `protocol_versions`.
 
 The `integration-test` network has an `integration-test.conf` hosted in the root of its staging directory.  This would be 
-pulled down directly into the `network_configs` directory of the node so it could be used with commands.
+pulled down directly into the `network_configs` directory of the node, so it could be used with commands.
 
 ```
 cd /etc/casper/network_configs
 sudo -u casper curl -JLO [url]/[network_name]/[network name].conf
 ```
 
-Loading all protocol for a given network is simply `sudo -u casper /etc/casper/node_util.py stage_protocol [conf filename]`.
+Loading all protocols for a given network is simply `sudo -u casper /etc/casper/node_util.py stage_protocol [conf filename]`.
 
 To finish off our example, we will list a full directory tree of our `exampled-test` network.
 
@@ -76,11 +76,13 @@ example-test/
      bin.tar.gz
      config.tar.gz
   1_3_0/
+     bin.tar.gz
+     config.tar.gz
 ```
 
 # config.tar.gz
 
-This group of files should be installed on the server in `/etc/casper/<protocol_version>/`.  This is done
+This group of files should be installed on the server in `/etc/casper/[protocol_version]/`.  This is done
 as part of `/etc/casper/node_util.py stage_protocols` distributed with `casper-node-launcher` package.
 
 This is a system agnostic configuration files for a protocol release.  The starting protocol version
@@ -92,7 +94,7 @@ to continue with consensus.  Activation point for genesis is a timestamp, otherw
 must match the version used for staging directory.
 
 `config-example.toml` is the default configuration with a location to drop in the node's IP address to
-create a `config.toml` file on the server. This is done automatically with the `config_from_example.sh` 
+create a `config.toml` file on the server. This is done automatically with the `node_util.py` 
 script distributed with `casper-node-launcher` packages.  The big change needed for this with a new network is
 the known_address list which should have some or all of the genesis node IPs.
 
@@ -113,7 +115,7 @@ tar -czvf ../config.tar.gz .
 ```
 
 This file would be hosted in the `[url][network_name][underscore protocol version]` directory of the staging location,
-where the protocol version matches that defined in the chainspec.toml file.
+where the protocol version matches that defined in the `chainspec.toml` file.
 
 # bin.tar.gz - bin_rpm.tar.gz
 
@@ -128,7 +130,7 @@ network was created, the `1.0.0` protocol should most likely use the latest viab
 
 This file is created as part of a casper-node release and generally can be pulled directly from there for hosting.
 
-For example: https://github.com/casper-network/casper-node/releases/tag/v1.4.5 hold `bin.tar.gz` as an release artifact.
+For example: https://github.com/casper-network/casper-node/releases/tag/v1.4.5 holds `bin.tar.gz` as a release artifact.
 This would be pulled down and hosted for a network protocol.
 
 To manually package this you could minimally:
