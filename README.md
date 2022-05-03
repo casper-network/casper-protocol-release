@@ -117,7 +117,7 @@ tar -czvf ../config.tar.gz .
 This file would be hosted in the `[url][network_name][underscore protocol version]` directory of the staging location,
 where the protocol version matches that defined in the `chainspec.toml` file.
 
-# bin.tar.gz - bin_rpm.tar.gz
+# bin.tar.gz
 
 The `bin.tar.gz` package holds a `casper-node` binary compiled for Ubuntu 18.04.
 
