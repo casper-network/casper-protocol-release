@@ -14,6 +14,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## 1.4.6 - 4785
 ### casper-node 1.4.6-72b698e89-casper-mainnet
 
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
 
 ## 1.4.5 - 4102
 ### casper-node 1.4.5-a7f6a648d-casper-mainnet
