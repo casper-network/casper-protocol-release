@@ -11,7 +11,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
-### 1.4.5 - 4417
+## 1.4.6 - 4869
+### casper-node 1.4.6-72b698e89-casper-mainnet
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+* config-example.toml
+  * network
+    * known_addresses
+  * event_stream_server
+    * max_concurrent_subscribers
+  * contract_runtime
+    * max_global_state_size
+
+## 1.4.5 - 4102
 ### casper-node 1.4.5-a7f6a648d-casper-mainnet
 
 ## Added
