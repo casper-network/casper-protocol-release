@@ -11,6 +11,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.4.12 - 7045
+### casper-node 1.4.8-b94c4f79a-casper-mainnet (no change)
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+* wasm.opcode_costs
+  * control_flow
+
 ## 1.4.11 - 5903
 ### casper-node 1.4.8-b94c4f79a-casper-mainnet
 
