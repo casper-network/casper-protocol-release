@@ -1,6 +1,6 @@
 [protocol]
 # Protocol version.
-version = '1.4.8'
+version = '1.4.10'
 # Whether we need to clear latest blocks back to the switch block just before the activation point or not.
 hard_reset = true
 # This protocol version becomes active at this point.
@@ -11,9 +11,9 @@ hard_reset = true
 # in contract-runtime for computing genesis post-state hash.
 #
 # If it is an integer, it represents an era ID, meaning the protocol version becomes active at the start of this era.
-activation_point = 5948
+activation_point = 7098
 # Optional era ID in which the last emergency restart happened.
-#last_emergency_restart = 0
+last_emergency_restart = 7098
 
 [network]
 # Human readable name for convenience; the genesis_hash is the true identifier.  The name influences the genesis hash by
@@ -132,7 +132,7 @@ local = 390
 # Global operations multiplier.
 global = 390
 # Control flow operations multiplier.
-control_flow = 440
+control_flow = 440000
 # Integer operations multiplier.
 integer_comparison = 250
 # Conversion operations multiplier.
