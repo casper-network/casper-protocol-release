@@ -11,6 +11,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.4.13 - 8396
+### casper-node 1.4.13-c8db6a737-casper-mainnet
+
+## Added
+* chainspec.toml
+  * wasm.opcode.control_flow
+    * block
+    * loop
+    * if
+    * else
+    * end
+    * br
+    * br_if
+    * return
+    * select
+    * call
+    * call_indirect
+    * drop
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * wasm.opcode_costs
+    * control_flow
+  * system_costs.auction_costs
+    * withdraw_bid
+    * undelegate
+* config-example.toml
+  * network
+    * known_addresses
+
+## Removed
+* chainspec.toml
+  * wasm.opcode_costs
+    * control_flow
+
+
 ## 1.4.9 - 7210
 ### casper-node 1.4.8-b94c4f79a-casper-mainnet
 
@@ -21,7 +60,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
     * activation_point
   * wasm.opcode_costs
     * control_flow
-    * 
 
 ## 1.4.8 - 6130
 ### casper-node 1.4.8-b94c4f79a-casper-mainnet
