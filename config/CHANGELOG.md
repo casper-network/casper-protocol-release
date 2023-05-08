@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
-# 1.4.15 - 9246
+## 1.4.15 - 9246
 ### casper-node 1.4.15-039d438f2-casper-mainnet
 
 ## Added
@@ -38,7 +38,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   * wasm.opcode_costs
     * regular
 
-# 1.4.13 - 8396
+## 1.4.13 - 8396
 ### casper-node 1.4.13-c8db6a737-casper-mainnet
 
 ## Added
