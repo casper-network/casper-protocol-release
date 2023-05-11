@@ -11,7 +11,132 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
-# 1.4.15 - 8971
+## 1.5.0 - 9128
+### casper-node 1.5.0-rc.1-a50b85a
+
+## Added
+* chainspec.toml
+  * core
+    * minimum_block_time
+    * finality_threshold_fraction
+    * start_protocol_version_with_strict_finality_signatures_required
+    * legacy_required_finality
+    * vesting_schedule_period
+    * strict_argument_checking
+    * simultaneous_peer_requests
+    * consensus_protocol
+    * max_delegators_per_validator
+  * highway
+    * maximum_round_length
+  * wasm.host_function_costs
+    * random_bytes
+  * system_costs.auction_costs
+    * redelegate
+  * system_costs.mint_costs
+    * mint_into_existing_purse
+* config-example.toml
+  * node
+    * sync_to_genesis
+    * idle_tolerance
+    * max_attempts
+    * control_logic_default_delay
+    * force_resync
+  * consensus
+    * max_execution_delay
+    * zug
+      * sync_state_interval
+      * log_participation_interval
+      * proposal_timeout
+      * proposal_grace_period
+      * proposal_timeout_inertia
+      * clock_tolerance
+  * network
+    * min_peers_for_initialization
+    * handshake_timeout
+    * max_incoming_peer_connections
+    * max_in_flight_demands
+    * tarpit_version_threshold
+    * tarpit_duration
+    * tarpit_chance
+    * blocklist_retain_duration
+    * estimator_weights
+      * gossip
+      * finality_signatures
+      * deploy_responses
+      * block_requests
+      * block_responses
+      * trie_requests
+      * trie_responses
+  * rpc_server
+    * enable_server
+    * max_body_bytes
+  * speculative_exec_server
+    * enable_server
+    * address
+    * qps_limit
+    * max_body_bytes
+  * rest_server
+    * enable_server
+  * event_stream_server
+    * enable_server
+  * gossip
+    * validate_and_store_timeout
+  * block_accumulator
+    * attempt_execution_threshold
+    * dead_air_interval
+    * purge_interval
+  * block_synchronizer
+    * max_parallel_trie_fetches
+    * peer_refresh_interval
+    * need_next_interval
+    * disconnect_dishonest_peers_interval
+    * latch_reset_interval
+    * stall_limit
+  * deploy_buffer
+    * expiry_check_interval
+  * diagnostics_ports
+    * enabled
+    * socket_path
+    * socket_umask
+  * upgrade_watcher
+    * upgrade_check_interval
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * network
+    * maximum_net_message_size
+  * core
+    * prune_batch_size
+  * wasm.host_function_costs
+    * call_versioned_contract
+    
+* config-example.toml
+  * storage
+    * mem_pool_prune_interval
+  * fetcher
+    * get_from_peer_timeout
+
+## Removed
+* chainspec.toml
+  * core
+    * max_stored_value_size
+  * highway
+    * finality_threshold_fraction
+    * minimum_round_exponent
+    * maximum_round_exponent
+* config-example.toml
+  * consensus.highway
+    * standstill_timeout
+    * max_execution_delay
+  * deploy_acceptor
+  * linear_chain_sync
+  * block_proposer
+
+
+## 1.4.15 - 8971
 ### casper-node 1.4.15-039d438f2-casper-mainnet
 
 ## Added
@@ -30,7 +155,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
       * call
       * call_indirect
 
-# 1.4.13 - 8078
+## 1.4.13 - 8078
 ### casper-node 1.4.13-c8db6a737-casper-mainnet
 
 ## Added
