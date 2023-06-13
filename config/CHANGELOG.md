@@ -11,6 +11,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.5.1 - 9534
+### casper-node 1.5.1-805a420
+
+## Added 
+* config-example.toml
+  * node
+    * shutdown_for_upgrade_timeout
+    * upgrade_timeout
+
+## Changed
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * wasm
+    * max_stack_height
+
 ## 1.5.0 - 9128
 ### casper-node 1.5.0-rc.1-a50b85a
 
