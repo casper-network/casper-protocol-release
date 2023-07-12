@@ -11,6 +11,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.5.2 - 9883
+### casper-node 1.5.2-86b7013
+
+## Added
+* config-example.toml
+  * rpc_server
+    * cors_origin
+  * speculative_exec_server
+    * cors_origin
+  * rest_server
+    * cors_origin
+  * event_stream_server
+    * cors_origin
+
+## Changes
+* chainspec.toml
+  * protocol
+    * version
+    * 
+
 ## 1.5.1 - 9534
 ### casper-node 1.5.1-805a420
 
