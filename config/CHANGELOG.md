@@ -29,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * chainspec.toml
   * protocol
     * version
-    * 
+    * activation_point
 
 ## 1.5.1 - 9534
 ### casper-node 1.5.1-805a420
