@@ -11,8 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
-## 1.5.1 - 9759
-### casper-node 1.5.1-805a420
+## 1.5.2 - 9904
+### casper-node 1.5.2-86b7013
 
 ## Added 
 * config-example.toml
@@ -73,15 +73,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   * rpc_server
     * enable_server
     * max_body_bytes
+    * cors_origin
   * speculative_exec_server
     * enable_server
     * address
     * qps_limit
     * max_body_bytes
+    * cors_origin
   * rest_server
     * enable_server
+    * cors_origin
   * event_stream_server
     * enable_server
+    * cors_origin
   * gossip
     * validate_and_store_timeout
   * block_accumulator
