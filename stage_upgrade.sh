@@ -35,7 +35,7 @@ echo "Upgrade 1_5_2 staged."
 
 if [[ "18.04" == $(lsb_release -sr) ]]; then
   echo
-  echo "WARNING - The current protocol upgrade is staged, however you have issues that need fixed prior the the next upgrade."
+  echo "WARNING - The current protocol upgrade is staged, however you have issues that need fixed prior to the upgrade following 1.5.2."
   echo
   echo "This server is running on Ubuntu 18.04, which reached end of life on May 31, 2023."
   echo "It is recommended that you load a new node with 20.04 or 22.04."
@@ -52,7 +52,7 @@ fi
 
 if [[ ${CNL_VERSION:0:1} == "0" ]]; then
   echo
-  echo "WARNING - The current protocol upgrade is staged, however you have issues that need fixed prior the the next upgrade."
+  echo "WARNING - The current protocol upgrade is staged, however you have issues that need fixed prior to the upgrade following 1.5.2."
   echo
   echo "This is a very old version of casper-node-launcher and will not be supported after this protocol upgrade."
   echo "Please make sure you are setup to pull software from https://repo.casperrlabs.io and install the latest version."
