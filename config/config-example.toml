@@ -6,6 +6,28 @@
 # If set, use this hash as a trust anchor when joining an existing network.
 #trusted_hash = 'HEX-FORMATTED BLOCK HASH'
 
+# Whether to synchronize all data back to genesis, or just [deploys.max_ttl] (chainspec setting) worth of data.
+sync_to_genesis = true
+
+# Idle time after which the syncing process is considered stalled.
+idle_tolerance = '20min'
+
+# When the syncing process is considered stalled, it'll be retried up to `max_attempts` times.
+max_attempts = 3
+
+# Default delay for the control events that have no dedicated delay requirements.
+control_logic_default_delay = '1sec'
+
+# Flag which forces the node to resync all of the blocks.
+force_resync = false
+
+# A timeout for the ShutdownForUpgrade state, after which the node will upgrade even if not all
+# conditions are satisfied.
+shutdown_for_upgrade_timeout = '2min'
+
+# Maximum time a node will wait for an upgrade to commit.
+upgrade_timeout = '30sec'
+
 
 # =================================
 # Configuration options for logging
@@ -31,6 +53,43 @@ abbreviate_modules = false
 # consensus messages.
 secret_key_path = '/etc/casper/validator_keys/secret_key.pem'
 
+# The maximum number of blocks by which execution is allowed to lag behind finalization.
+# If it is more than that, consensus will pause, and resume once the executor has caught up.
+max_execution_delay = 3
+
+
+# =======================================
+# Configuration options for Zug consensus
+# =======================================
+[consensus.zug]
+
+# Request the latest protocol state from a random peer periodically, with this interval.
+# '0sec' means it is disabled and we never request the protocol state from a peer.
+sync_state_interval = '1sec'
+
+# Log inactive or faulty validators periodically, with this interval.
+# '0sec' means it is disabled and we never print the log message.
+log_participation_interval = '1min'
+
+# The minimal proposal timeout. Validators wait this long for a proposal to receive a quorum of
+# echo messages, before they vote to make the round skippable and move on to the next proposer.
+proposal_timeout = '10sec'
+
+# The additional proposal delay that is still considered fast enough, in percent. This should
+# take into account variables like empty vs. full blocks, network traffic etc.
+# E.g. if proposing a full block while under heavy load takes 50% longer than an empty one
+# while idle this should be at least 50, meaning that the timeout is 50% longer than
+# necessary for a quorum of recent proposals, approximately.
+proposal_grace_period = 200
+
+# The average number of rounds after which the proposal timeout adapts by a factor of 2.
+# Note: It goes up faster than it goes down: it takes fewer rounds to double than to halve.
+proposal_timeout_inertia = 10
+
+# The maximum difference between validators' clocks we expect. Incoming proposals whose timestamp
+# lies in the future by more than that are rejected.
+clock_tolerance = '1sec'
+
 
 # ===========================================
 # Configuration options for Highway consensus
@@ -40,24 +99,20 @@ secret_key_path = '/etc/casper/validator_keys/secret_key.pem'
 # The duration for which incoming vertices with missing dependencies should be kept in a queue.
 pending_vertex_timeout = '30min'
 
-# If the current era's protocol state has not progressed for this long, shut down.
-standstill_timeout = '30min'
-
 # Request the latest protocol state from a random peer periodically, with this interval.
+# '0sec' means it is disabled and we never request the protocol state from a peer.
 request_state_interval = '20sec'
 
 # Log inactive or faulty validators periodically, with this interval.
+# '0sec' means it is disabled and we never print the log message.
 log_participation_interval = '1min'
 
 # Log the synchronizer state periodically, with this interval.
+# '0sec' means it is disabled and we never print the log message.
 log_synchronizer_interval = '5sec'
 
 # Log the size of every incoming and outgoing serialized unit.
 log_unit_sizes = false
-
-# The maximum number of blocks by which execution is allowed to lag behind finalization.
-# If it is more than that, consensus will pause, and resume once the executor has caught up.
-max_execution_delay = 3
 
 # The maximum number of peers we request the same vertex from in parallel.
 max_requests_for_vertex = 5
@@ -72,14 +127,14 @@ max_request_batch_size = 20
 num_rounds_to_consider = 40
 
 # The number of successful rounds that triggers us to slow down: With this many or fewer
-# successes per `num_rounds_to_consider`, we increase our round exponent.
+# successes per `num_rounds_to_consider`, we increase our round length.
 num_rounds_slowdown = 10
 
 # The number of successful rounds that triggers us to speed up: With this many or more successes
-# per `num_rounds_to_consider`, we decrease our round exponent.
+# per `num_rounds_to_consider`, we decrease our round length.
 num_rounds_speedup = 32
 
-# We will try to accelerate (decrease our round exponent) every `acceleration_parameter` rounds if
+# We will try to accelerate (decrease our round length) every `acceleration_parameter` rounds if
 # we have few enough failures.
 acceleration_parameter = 40
 
@@ -113,7 +168,7 @@ bind_address = '0.0.0.0:35000'
 #
 # Multiple addresses can be given and the node will attempt to connect to each, requiring at least
 # one connection.
-known_addresses = ['34.192.231.34:35000','168.119.137.143:35000','46.101.61.107:35000','47.88.87.63:35000','35.152.42.229:35000','148.251.190.103:35000','18.219.70.138:35000','3.225.191.9:35000','3.221.194.62:35000','54.151.24.120:35000','99.81.225.72:35000','63.33.251.206:35000','54.180.220.20:35000','188.40.83.254:35000','157.90.131.121:35000','168.119.209.31:35000','13.51.218.68:35000','15.235.53.173:35000','15.235.53.233:35000','178.162.231.183:35000','71.105.223.69:35000','84.16.224.170:35000','144.76.85.204:35000','88.218.224.93:35000','15.235.14.86:35000','15.235.53.230:35000','188.40.16.94:35000','65.108.101.62:35000','65.21.129.12:35000','3.17.72.47:35000','20.51.219.57:35000','135.181.216.81:35000','162.19.171.49:35000','185.132.178.196:35000','65.108.69.41:35000','135.181.76.244:35000']
+known_addresses = ['34.192.231.34:35000','168.119.137.143:35000','46.101.61.107:35000','47.88.87.63:35000','35.152.42.229:35000','18.219.70.138:35000','3.225.191.9:35000','3.221.194.62:35000','54.151.24.120:35000','99.81.225.72:35000','63.33.251.206:35000','54.180.220.20:35000','188.40.83.254:35000','157.90.131.121:35000','168.119.209.31:35000','13.51.218.68:35000','15.235.53.173:35000','15.235.53.233:35000','178.162.231.183:35000','71.105.223.69:35000','84.16.224.170:35000','88.218.224.93:35000','15.235.14.86:35000','15.235.53.230:35000','188.40.16.94:35000','65.108.101.62:35000','65.21.129.12:35000','3.17.72.47:35000','20.51.219.57:35000','162.19.171.49:35000','185.132.178.196:35000','65.108.69.41:35000','135.181.76.244:35000']
 
 # The interval between each fresh round of gossiping the node's public address.
 gossip_interval = '120sec'
@@ -125,25 +180,84 @@ initial_gossip_delay = '5sec'
 # How long a connection is allowed to be stuck as pending before it is abandoned.
 max_addr_pending_time = '1min'
 
-# The maximum amount of upstream bandwidth in bytes per second allocated to non-validating peers.
+# Maximum time allowed for a connection handshake between two nodes to be completed. Connections
+# exceeding this threshold are considered unlikely to be healthy or even malicious and thus
+# terminated.
+handshake_timeout = '20sec'
+
+# Maximum number of incoming connections per unique peer allowed. If the limit is hit, additional
+# connections will be rejected. A value of `0` means unlimited.
+max_incoming_peer_connections = 3
+
+# The maximum total of upstream bandwidth in bytes per second allocated to non-validating peers.
 # A value of `0` means unlimited.
 max_outgoing_byte_rate_non_validators = 6553600
 
-# The maximum allowed impact of requests from non-validating peers per second answered.
+# The maximum allowed total impact of requests from non-validating peers per second answered.
 # A value of `0` means unlimited.
 max_incoming_message_rate_non_validators = 3000
+
+# Maximum number of requests for data from a single peer that are allowed be buffered. A value of
+# `0` means unlimited.
+max_in_flight_demands = 50
+
+# Version threshold to enable tarpit for.
+#
+# When set to a version (the value may be `null` to disable the feature), any peer that reports a
+# protocol version equal or below the threshold will be rejected only after holding open the
+# connection for a specific (`tarpit_duration`) amount of time.
+#
+# This option makes most sense to enable on known nodes with addresses where legacy nodes that are
+# still in operation are connecting to, as these older versions will only attempt to reconnect to
+# other nodes once they have exhausted their set of known nodes.
+tarpit_version_threshold = '1.2.1'
+
+# How long to hold connections to trapped legacy nodes.
+tarpit_duration = '10min'
+
+# The probability [0.0, 1.0] of this node trapping a legacy node.
+#
+# Since older nodes will only reconnect if all their options are exhausted, it is sufficient for a
+# single known node to hold open a connection to prevent the node from reconnecting. This should be
+# set to `1/n` or higher, with `n` being the number of known nodes expected in the configuration of
+# legacy nodes running this software.
+tarpit_chance = 0.2
+
+# How long peers remain blocked after they get blocklisted.
+blocklist_retain_duration = '10min'
+
+# Identity of a node
+#
+# When this section is not specified, an identity will be generated when the node process starts with a self-signed certifcate.
+# This option makes sense for some private chains where for security reasons joining new nodes is restricted.
+# [network.identity]
+# tls_certificate = "node_cert.pem"
+# secret_key = "node.pem"
+# ca_certificate = "ca_cert.pem"
 
 # Weights for impact estimation of incoming messages, used in combination with
 # `max_incoming_message_rate_non_validators`.
 #
 # Any weight set to 0 means that the category of traffic is exempt from throttling.
-estimator_weights = { consensus=0, deploy_requests=1 }
+[network.estimator_weights]
+consensus = 0
+gossip = 0
+finality_signatures = 0
+deploy_requests = 1
+deploy_responses = 1
+block_requests = 1
+block_responses = 0
+trie_requests = 1
+trie_responses = 0
 
 
 # ==================================================
 # Configuration options for the JSON-RPC HTTP server
 # ==================================================
 [rpc_server]
+
+# Flag which enables the JSON-RPC HTTP server.
+enable_server = true
 
 # Listening address for JSON-RPC HTTP server.  If the port is set to 0, a random port will be used.
 #
@@ -155,13 +269,59 @@ address = '0.0.0.0:7777'
 
 # The global max rate of requests (per second) before they are limited.
 # Request will be delayed to the next 1 second bucket once limited.
-qps_limit = 50
+qps_limit = 100
+
+# Maximum number of bytes to accept in a single request body.
+max_body_bytes = 2_621_440
+
+# Specifies which origin will be reported as allowed by RPC server.
+#
+# If left empty, CORS will be disabled.
+# If set to '*', any origin is allowed.
+# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
+cors_origin = ''
+
+
+# ========================================================================
+# Configuration options for the speculative execution JSON-RPC HTTP server
+# ========================================================================
+[speculative_exec_server]
+
+# Flag which enables the speculative execution JSON-RPC HTTP server.
+enable_server = false
+
+# Listening address for speculative execution JSON-RPC HTTP server.  If the port
+# is set to 0, a random port will be used.
+#
+# If the specified port cannot be bound to, a random port will be tried instead.
+# If binding fails, the speculative execution JSON-RPC HTTP server will not run,
+# but the node will be otherwise unaffected.
+#
+# The actual bound address will be reported via a log line if logging is enabled.
+address = '0.0.0.0:7778'
+
+# The global max rate of requests (per second) before they are limited.
+# Request will be delayed to the next 1 second bucket once limited.
+qps_limit = 1
+
+# Maximum number of bytes to accept in a single request body.
+max_body_bytes = 2_621_440
+
+# Specifies which origin will be reported as allowed by speculative execution server.
+#
+# If left empty, CORS will be disabled.
+# If set to '*', any origin is allowed.
+# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
+cors_origin = ''
 
 
 # ==============================================
 # Configuration options for the REST HTTP server
 # ==============================================
 [rest_server]
+
+# Flag which enables the REST HTTP server.
+enable_server = true
 
 # Listening address for REST HTTP server.  If the port is set to 0, a random port will be used.
 #
@@ -175,11 +335,21 @@ address = '0.0.0.0:8888'
 # Request will be delayed to the next 1 second bucket once limited.
 qps_limit = 10
 
+# Specifies which origin will be reported as allowed by REST server.
+#
+# If left empty, CORS will be disabled.
+# If set to '*', any origin is allowed.
+# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
+cors_origin = ''
+
 
 # ==========================================================
 # Configuration options for the SSE HTTP event stream server
 # ==========================================================
 [event_stream_server]
+
+# Flag which enables the SSE HTTP event stream server.
+enable_server = true
 
 # Listening address for SSE HTTP event stream server.  If the port is set to 0, a random port will be used.
 #
@@ -193,8 +363,14 @@ address = '0.0.0.0:9999'
 event_stream_buffer_length = 5000
 
 # The maximum number of subscribers across all event streams the server will permit at any one time.
-max_concurrent_subscribers = 50
+max_concurrent_subscribers = 100
 
+# Specifies which origin will be reported as allowed by event stream server.
+#
+# If left empty, CORS will be disabled.
+# If set to '*', any origin is allowed.
+# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
+cors_origin = ''
 
 # ===============================================
 # Configuration options for the storage component
@@ -246,7 +422,8 @@ enable_mem_deduplication = true
 # Memory duplication garbage collection.
 #
 # Sets the frequency how often the memory pool cache is swept for free references.
-mem_pool_prune_interval = 1024
+# For example, setting this value to 5 means that every 5th time something is put in the pool the cache is swept.
+mem_pool_prune_interval = 4096
 
 
 # ===================================
@@ -269,7 +446,7 @@ saturation_limit_percent = 80
 #
 # The longer they are retained, the lower the likelihood of re-gossiping a piece of data.  However,
 # the longer they are retained, the larger the list of finished entries can grow.
-finished_entry_duration = '60sec'
+finished_entry_duration = '1min'
 
 # The timeout duration for a single gossip request, i.e. for a single gossip message
 # sent from this node, it will be considered timed out if the expected response from that peer is
@@ -280,25 +457,60 @@ gossip_request_timeout = '30sec'
 # from a peer which gossiped information about that data to this node.
 get_remainder_timeout = '5sec'
 
+# The timeout duration for a newly-received, gossiped item to be validated and stored by another
+# component before the gossiper abandons waiting to gossip the item onwards.
+validate_and_store_timeout = '1min'
 
-# =================================
-# Configuration options for fetcher
-# =================================
+
+# ===============================================
+# Configuration options for the block accumulator
+# ===============================================
+[block_accumulator]
+
+# Block height difference threshold for starting to execute the blocks.
+attempt_execution_threshold = 3
+
+# Accepted time interval for inactivity in block accumulator.
+dead_air_interval = '3min'
+
+# Time after which the block acceptors are considered old and can be purged.
+purge_interval = '1min'
+
+
+# ================================================
+# Configuration options for the block synchronizer
+# ================================================
+[block_synchronizer]
+
+# Maximum number of fetch-trie tasks to run in parallel during block synchronization.
+max_parallel_trie_fetches = 5000
+
+# Time interval for the node to ask for refreshed peers.
+peer_refresh_interval = '90sec'
+
+# Time interval for the node to check what the block synchronizer needs to acquire next.
+need_next_interval = '1sec'
+
+# Time interval for recurring disconnection of dishonest peers.
+disconnect_dishonest_peers_interval = '10sec'
+
+# Time interval for resetting the latch in block builders.
+latch_reset_interval = '5sec'
+
+# Time interval after which synchronization is considered stalled if no successful sync
+# activity happened.
+stall_limit = '120sec'
+
+
+# ==================================
+# Configuration options for fetchers
+# ==================================
 [fetcher]
 
 # The timeout duration for a single fetcher request, i.e. for a single fetcher message
 # sent from this node to another node, it will be considered timed out if the expected response from that peer is
 # not received within this specified duration.
-get_from_peer_timeout = '3sec'
-
-
-# ===================================================
-# Configuration options for deploy acceptor component
-# ===================================================
-[deploy_acceptor]
-
-# If true, the deploy acceptor will verify the account associated with a received deploy prior to accepting it.
-verify_accounts = true
+get_from_peer_timeout = '10sec'
 
 
 # ========================================================
@@ -306,15 +518,11 @@ verify_accounts = true
 # ========================================================
 [contract_runtime]
 
-# Optional setting to enable bonding or not.  If unset, defaults to false.
-#enable_bonding = false
-
 # Optional maximum size of the database to use for the global state store.
 #
 # If unset, defaults to 805,306,368,000 == 750 GiB.
 #
 # The size should be a multiple of the OS page size.
-# Set to 1.9 TB for some partitions with issues at 2.0 TB
 max_global_state_size = 2_089_072_132_096
 
 # Optional depth limit to use for global state queries.
@@ -325,24 +533,39 @@ max_global_state_size = 2_089_072_132_096
 # Enable manual synchronizing to disk.
 #
 # If unset, defaults to true.
-enable_manual_sync = true
+#enable_manual_sync = true
 
 
-# ========================================================
-# Configuration options for synchronizing the linear chain
-# ========================================================
-[linear_chain_sync]
+# ===========================================
+# Configuration options for the deploy buffer
+# ===========================================
+[deploy_buffer]
 
-# The amount of time that the node will try to sync without making progress before shutting down.
-sync_timeout = '1hr'
+# The interval of checking for expired deploys.
+expiry_check_interval = '1min'
 
 
-# ====================================================================
-# Configuration options for selecting deploys to propose in new blocks
-# ====================================================================
-[block_proposer]
+# ==============================================
+# Configuration options for the diagnostics port
+# ==============================================
+[diagnostics_port]
 
-# Deploys are only proposed in a new block if they have been received at least this long ago.
-# A longer delay makes it more likely that many proposed deploys are already known by the
-# other nodes, and don't have to be requested from the proposer afterwards.
-deploy_delay = '15sec'
+# If set, the diagnostics port will be available on a UNIX socket.
+enabled = false
+
+# Filename for the UNIX domain socket the diagnostics port listens on.
+socket_path = "debug.socket"
+
+# The umask to set before creating the socket. A restrictive mask like `0o077` will cause the
+# socket to be only accessible by the user the node runs as. A more relaxed variant is `0o007`,
+# which allows for group access as well.
+socket_umask = 0o077
+
+
+# =============================================
+# Configuration options for the upgrade watcher
+# =============================================
+[upgrade_watcher]
+
+# How often to scan file system for available upgrades.
+upgrade_check_interval = '30sec'
