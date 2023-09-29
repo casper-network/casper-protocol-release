@@ -11,6 +11,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.5.3 - 10826
+### casper-node 1.5.3-7aa53e8
+
+## Removed
+* config-example.toml
+  * block_synchronizer
+    * stall_limit
+
+## Added
+* chainspec.toml
+  * deploys
+    * max_timestamp_leeway
+* block_validator
+  * max_completed_entries
+* deploy_acceptor
+  * timestamp_leeway
+
+## Changed
+* Reformating of multiple time based values
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+
 ## 1.5.2 - 9904
 ### casper-node 1.5.2-86b7013
 
