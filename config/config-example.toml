@@ -474,10 +474,10 @@ validate_and_store_timeout = '1 minute'
 attempt_execution_threshold = 3
 
 # Accepted time interval for inactivity in block accumulator.
-dead_air_interval = '3min'
+dead_air_interval = '3 minutes'
 
 # Time after which the block acceptors are considered old and can be purged.
-purge_interval = '1min'
+purge_interval = '1 minute'
 
 
 # ================================================
@@ -489,20 +489,28 @@ purge_interval = '1min'
 max_parallel_trie_fetches = 5000
 
 # Time interval for the node to ask for refreshed peers.
-peer_refresh_interval = '90sec'
+peer_refresh_interval = '90 seconds'
 
 # Time interval for the node to check what the block synchronizer needs to acquire next.
-need_next_interval = '1sec'
+need_next_interval = '1 second'
 
 # Time interval for recurring disconnection of dishonest peers.
-disconnect_dishonest_peers_interval = '10sec'
+disconnect_dishonest_peers_interval = '10 seconds'
 
 # Time interval for resetting the latch in block builders.
-latch_reset_interval = '5sec'
+latch_reset_interval = '5 seconds'
 
-# Time interval after which synchronization is considered stalled if no successful sync
-# activity happened.
-stall_limit = '120sec'
+
+# =============================================
+# Configuration options for the block validator
+# =============================================
+[block_validator]
+
+# Maximum number of completed entries to retain.
+#
+# A higher value can avoid creating needless validation work on an already-validated proposed
+# block, but comes at the cost of increased memory consumption.
+max_completed_entries = 3
 
 
 # ==================================
@@ -513,7 +521,7 @@ stall_limit = '120sec'
 # The timeout duration for a single fetcher request, i.e. for a single fetcher message
 # sent from this node to another node, it will be considered timed out if the expected response from that peer is
 # not received within this specified duration.
-get_from_peer_timeout = '10sec'
+get_from_peer_timeout = '10 seconds'
 
 
 # ========================================================
@@ -539,13 +547,28 @@ max_global_state_size = 2_089_072_132_096
 #enable_manual_sync = true
 
 
+# =============================================
+# Configuration options for the deploy acceptor
+# =============================================
+[deploy_acceptor]
+
+# The leeway allowed when considering whether a deploy is future-dated or not.
+#
+# To accommodate minor clock drift, deploys whose timestamps are within `timestamp_leeway` in the
+# future are still acceptable.
+#
+# The maximum value to which `timestamp_leeway` can be set is defined by the chainspec setting
+# `deploys.max_timestamp_leeway`.
+timestamp_leeway = '2 seconds'
+
+
 # ===========================================
 # Configuration options for the deploy buffer
 # ===========================================
 [deploy_buffer]
 
 # The interval of checking for expired deploys.
-expiry_check_interval = '1min'
+expiry_check_interval = '1 minute'
 
 
 # ==============================================
@@ -571,4 +594,4 @@ socket_umask = 0o077
 [upgrade_watcher]
 
 # How often to scan file system for available upgrades.
-upgrade_check_interval = '30sec'
+upgrade_check_interval = '30 seconds'
