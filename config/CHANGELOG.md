@@ -11,6 +11,90 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.5.5 - 11662
+### casper-node 1.5.5-3c2e7a3
+
+## Removed
+* config-example.toml
+  * node
+    * sync_to_genesis
+  * network
+    * estimator_weights
+      * gossip
+      * finality_signatures
+
+## Added
+* config-example.toml
+  * node
+    * sync_handling
+  * network
+    * estimator_weights
+      * block_gossip
+      * deploy_gossip
+      * finality_signature_gossip
+      * address_gossip
+      * finality_signature_broadcasts
+      * legacy_deploy_requests
+      * legacy_deploy_responses
+      * block_header_requests
+      * block_header_responses
+      * finality_signature_requests
+      * finality_signature_responses
+      * sync_leap_requests
+      * sync_leap_responses
+      * sync_leap_requests
+      * sync_leap_responses
+      * approvals_hashes_requests
+      * approvals_hashes_responses
+      * execution_results_requests
+      * execution_results_responses
+
+* chainspec.toml
+  * core
+    * allow_unrestricted_transfers
+    * allow_auction_bids
+    * compute_rewards
+    * refund_handling
+    * fee_handling
+    * administrators
+  * highway
+    * performance_meter
+      * blocks_to_consider
+  * wasm
+    * host_function_costs
+      * enable_contract_version
+
+## Changed
+* config-example.toml
+  * network
+    * estimator_weights
+      * deploy_responses
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * core
+    * minimum_block_time
+    * locked_funds_period
+    * vesting_schedule_period
+    * round_seigniorage_rate
+  * highway
+    * maximum_round_length
+  * deploys
+    * max_block_size
+    * block_max_deploy_count
+    * block_max_transfer_count
+    * block_gas_limit
+  * wasm
+    * opcode_costs
+      * control_flow
+        * br
+        * br_if
+        * call
+        * call_indirect
+        * br_table
+          * cost
+
 ## 1.5.3 - 10807
 ### casper-node 1.5.3-7aa53e8
 
