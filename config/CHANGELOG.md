@@ -11,6 +11,59 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.5.5 - 11662
+### casper-node 1.5.5-3c2e7a3
+
+## Removed
+* config-example.toml
+  * node
+    * sync_to_genesis
+  * network
+    * estimator_weights
+      * gossip
+      * finality_signatures
+
+## Added
+* config-example.toml
+  * node
+    * sync_handling
+  * network
+    * estimator_weights
+      * block_gossip
+      * deploy_gossip
+      * finality_signature_gossip
+      * address_gossip
+      * finality_signature_broadcasts
+      * legacy_deploy_requests
+      * legacy_deploy_responses
+      * block_header_requests
+      * block_header_responses
+      * finality_signature_requests
+      * finality_signature_responses
+      * sync_leap_requests
+      * sync_leap_responses
+      * sync_leap_requests
+      * sync_leap_responses
+      * approvals_hashes_requests
+      * approvals_hashes_responses
+      * execution_results_requests
+      * execution_results_responses
+
+* chainspec.toml
+  * core
+    * allow_unrestricted_transfers
+    * allow_auction_bids
+    * compute_rewards
+    * refund_handling
+    * fee_handling
+    * administrators
+  * highway
+    * performance_meter
+      * blocks_to_consider
+  * wasm
+    * host_function_costs
+      * enable_contract_version
+
 ## 1.5.3 - 10826
 ### casper-node 1.5.3-7aa53e8
 
