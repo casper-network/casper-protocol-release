@@ -2,7 +2,7 @@
 
 set -e
 
-# This script will stage the upgrade files for casper network from 1.5.2 to 1.5.3
+# This script will stage the upgrade files for casper network from 1.5.3 to 1.5.5
 
 if [ "$(whoami)" != "root" ]; then
   echo
@@ -12,8 +12,8 @@ if [ "$(whoami)" != "root" ]; then
   exit 1
 fi
 
-if [[ -d "/etc/casper/1_5_3" ]]; then
-   echo "Upgrade 1.5.3 already staged."
+if [[ -d "/etc/casper/1_5_5" ]]; then
+   echo "Upgrade 1.5.5 already staged."
    exit 0
 fi
 
@@ -28,14 +28,14 @@ if [[ ${CNL_VERSION:0:1} == "1" ]]; then
 else
   if [ $CNL_VERSION == "0.3.2" ]; then
      echo "casper-node-launcher version 0.3.2, using old syntax."
-     sudo -u casper /etc/casper/pull_casper_node_version.sh 1_5_3 casper
+     sudo -u casper /etc/casper/pull_casper_node_version.sh 1_5_5 casper
   else
      echo "casper-node-launcher version 0.3.3+, using conf syntax."
-     sudo -u casper /etc/casper/pull_casper_node_version.sh casper.conf 1_5_3
+     sudo -u casper /etc/casper/pull_casper_node_version.sh casper.conf 1_5_5
   fi
-  sudo -u casper /etc/casper/config_from_example.sh 1_5_3
+  sudo -u casper /etc/casper/config_from_example.sh 1_5_5
 fi
-echo "Upgrade 1_5_3 staged."
+echo "Upgrade 1_5_5 staged."
 
 
 exit 0
