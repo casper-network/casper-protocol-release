@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
       * call_contract
       * call_versioned_contract
       * get_balance
+      * get_named_arg
       * put_key
       * read_value
       * remove_contract_user_group_urefs
