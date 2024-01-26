@@ -11,6 +11,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.5.6 - 12268
+## casper-node 1.5.6 9f3995853204a18f17de9c022233d22aa14b9c37
+
+## Changed
+* config-example.toml
+  * node
+    * prevent_validator_shutdown
+
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * deploys
+    * max_ttl
+  * wasm
+    * storage_costs
+      * gas_per_byte
+    * host_function_costs
+      * add_associated_key
+      * add_contract_version
+      * blake2b
+      * call_contract
+      * call_versioned_contract
+      * get_balance
+      * get_named_arg
+      * put_key
+      * read_value
+      * remove_contract_user_group_urefs
+      * transfer_from_purse_to_purse
+
+
 ## 1.5.5 - 11751
 ### casper-node 1.5.5-3c2e7a3
 
