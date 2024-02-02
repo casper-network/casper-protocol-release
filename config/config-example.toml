@@ -36,6 +36,17 @@ shutdown_for_upgrade_timeout = '2 minutes'
 # Maximum time a node will wait for an upgrade to commit.
 upgrade_timeout = '30 seconds'
 
+# The node detects when it should do a controlled shutdown when it is in a detectably bad state
+# in order to avoid potentially catastrophic uncontrolled crashes. Generally, a node should be
+# allowed to shutdown, and if restarted that node will generally recover gracefully and resume
+# normal operation. However, actively validating nodes have subjective state in memory that is
+# lost on shutdown / restart and must be reacquired from other validating nodes on restart.
+# If all validating nodes shutdown in the middle of an era, social consensus is required to restart
+# the network. As a mitigation for that, the following config can be set to true on some validator
+# nodes to cause nodes that are supposed to be validators in the current era to ignore controlled
+# shutdown events and stay up. This allows them to act as sentinels for the consensus data for
+# other restarting nodes. This config is inert on non-validating nodes.
+prevent_validator_shutdown = false
 
 # =================================
 # Configuration options for logging
@@ -176,7 +187,7 @@ bind_address = '0.0.0.0:35000'
 #
 # Multiple addresses can be given and the node will attempt to connect to each, requiring at least
 # one connection.
-known_addresses = ['34.192.231.34:35000','168.119.137.143:35000','46.101.61.107:35000','47.88.87.63:35000','35.152.42.229:35000','18.219.70.138:35000','3.221.194.62:35000','99.81.225.72:35000','63.33.251.206:35000','54.180.220.20:35000','188.40.83.254:35000','157.90.131.121:35000','13.51.218.68:35000','15.235.53.173:35000','15.235.53.233:35000','178.162.231.183:35000','71.105.223.69:35000','84.16.224.170:35000','88.218.224.93:35000','15.235.14.86:35000','15.235.53.230:35000','188.40.16.94:35000','65.108.101.62:35000','65.21.129.12:35000','3.17.72.47:35000','162.19.171.49:35000','185.132.178.196:35000','65.108.69.41:35000']
+known_addresses = ['34.192.231.34:35000','168.119.137.143:35000','46.101.61.107:35000','47.88.87.63:35000','35.152.42.229:35000','18.219.70.138:35000','99.81.225.72:35000','63.33.251.206:35000','54.180.220.20:35000','13.51.218.68:35000','15.235.53.173:35000','15.235.53.233:35000','178.162.231.183:35000','71.105.223.69:35000','84.16.224.170:35000','88.218.224.93:35000','15.235.14.86:35000','15.235.53.230:35000','188.40.16.94:35000','65.108.101.62:35000','3.17.72.47:35000','162.19.171.49:35000']
 
 # Minimum number of fully-connected peers to consider network component initialized.
 min_peers_for_initialization = 3

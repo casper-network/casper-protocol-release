@@ -11,7 +11,107 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
-## 1.5.5 - 12150
+## 1.5.6 - 12268 (from 1.5.3)
+### casper-node 1.5.6 9f3995853204a18f17de9c022233d22aa14b9c37
+
+## Removed
+* config-example.toml
+  * node
+    * sync_to_genesis
+  * network
+    * estimator_weights
+      * gossip
+      * finality_signatures
+
+## Changed
+* config-example.toml
+  * node
+    * prevent_validator_shutdown
+
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * core
+    * minimum_block_time
+    * locked_funds_period
+    * vesting_schedule_period
+    * round_seigniorage_rate
+  * highway
+    * maximum_round_length
+  * deploys
+    * max_ttl
+    * max_block_size
+    * block_max_deploy_count
+    * block_max_transfer_count
+    * block_gas_limit
+  * wasm
+    * storage_costs
+      * gas_per_byte
+    * host_function_costs
+      * add_associated_key
+      * add_contract_version
+      * blake2b
+      * call_contract
+      * call_versioned_contract
+      * get_balance
+      * get_named_arg
+      * put_key
+      * read_value
+      * remove_contract_user_group_urefs
+      * transfer_from_purse_to_purse
+    * opcode_costs
+      * control_flow
+        * br
+        * br_if
+        * call
+        * call_indirect
+        * br_table
+          * cost
+
+## Added
+* config-example.toml
+  * node
+    * sync_handling
+  * network
+    * estimator_weights
+      * block_gossip
+      * deploy_gossip
+      * finality_signature_gossip
+      * address_gossip
+      * finality_signature_broadcasts
+      * legacy_deploy_requests
+      * legacy_deploy_responses
+      * block_header_requests
+      * block_header_responses
+      * finality_signature_requests
+      * finality_signature_responses
+      * sync_leap_requests
+      * sync_leap_responses
+      * sync_leap_requests
+      * sync_leap_responses
+      * approvals_hashes_requests
+      * approvals_hashes_responses
+      * execution_results_requests
+      * execution_results_responses
+    * rpc_server
+      * qps_limit
+* chainspec.toml
+  * core
+    * allow_unrestricted_transfers
+    * allow_auction_bids
+    * compute_rewards
+    * refund_handling
+    * fee_handling
+    * administrators
+  * highway
+    * performance_meter
+      * blocks_to_consider
+  * wasm
+    * host_function_costs
+      * enable_contract_version
+
+## 1.5.5 - 12150 (deferred to 1.5.6)
 ### casper-node 1.5.5-3c2e7a3
 
 ## Removed
@@ -23,7 +123,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
       * gossip
       * finality_signatures
 
-## Changes
+## Changed
 * chainspec.toml
   * protocol
     * version
