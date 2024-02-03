@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
-## 1.5.6 - 12268 (from 1.5.3)
+## 1.5.6 - 12509 (from 1.5.3)
 ### casper-node 1.5.6 9f3995853204a18f17de9c022233d22aa14b9c37
 
 ## Removed
