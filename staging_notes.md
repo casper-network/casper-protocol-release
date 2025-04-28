@@ -5,13 +5,15 @@
 2.0.0 upgrade will activate at the start of Era: 17889
 
 This is expected around:
+```
 2025-05-06 11:43 UTC
 2025-05-06 07:43 EST
 2025-05-06 04:43 PST
 2025-05-06 19:43 HK
 2025-05-06 12:43 CET
+```
 
-Validating nodes participating in this upgrade need staged prior to this point.
+All nodes participating in this upgrade need staged prior to this point.
 
 ## Staging procedure
 
