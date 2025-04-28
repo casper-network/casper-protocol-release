@@ -82,8 +82,8 @@ to a DB archive which will prepopulate much of this historical data.
 
 There are two main reasons we recommend a validator run as `ttl`:
 
- 1 - LMDB is a memory backed storage and minimizing the DB footprint will improve performance.
- 2 - If your node falls behind, with a `genesis` type sync, the node MUST complete historical sync prior to moving 
+1. LMDB is a memory backed storage and minimizing the DB footprint will improve performance.
+2. If your node falls behind, with a `genesis` type sync, the node MUST complete historical sync prior to moving 
  from `KeepUp` to `Validate` mode. Depending on the duration of your outage, this could be some time. Backward sync
 is a background process and de-prioritized compared to running the network.
 
