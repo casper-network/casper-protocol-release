@@ -11,6 +11,82 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 2.0.0 - 17889
+### casper-node 2.0.0-a7e4ff1
+
+## This was a massive breaking change update and the change log is calling out major pieces but not exhaustive.
+
+## Changed
+* config-example.toml
+  * network
+    * known_addresses
+    * blocklist_retain_duration
+      * Changed to min and max times to allow a more randomized timing of block list between these values.
+    * estimator_weights
+      * `deploy` to `transaction` naming updates
+  * deploy_acceptor -> transaction_acceptor
+  * deploy_buffer -> transaction_buffer
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * deploys -> transactions (section rename)
+    * Massive changes in transactions handling and configuration
+  * wasm -> wasm.v1 (versioning to allow for multiple VMs)
+    * opcode_costs
+      * All updated (generally reduced)
+  * wasm.storage_costs -> storage_costs (will be shared by all VMs)
+  * system_costs
+    * Many changes to system costs to standardize
+
+## Added
+* config-example.toml
+  * binary_port_server
+    * enable_server
+    * address
+    * allow_request_get_all_values (to get big auction results, needs changed to true from default false)
+    * allow_request_get_trie
+    * allow_request_speculative_exec
+    * max_message_size_bytes
+    * max_connections
+    * qps_limit
+    * initial_connection_lifetime
+    * get_record_request_termination_delay
+    * get_information_request_termination_delay
+    * get_state_request_termination_delay
+    * get_trie_request_termination_delay
+    * accept_transaction_request_termination_delay
+    * speculative_exec_request_termination_delay
+* chainspec.toml
+  * core
+    * maximum_delegation_amount
+    * consensus_protocol
+  * wasm.v1.host_function_costs
+    * add_contract_version_with_message_topics
+    * add_package_version_with_message_topics
+    * dictionary_get
+    * dictionary_put
+    * manage_message_topic
+    * emit_message
+    * generic_hash
+    * cost_increase_per_message
+    * get_block_info
+    * recover_secp256k1
+    * verify_signature
+  * system_costs.auction_costs
+    * change_bid_public_key
+    * add_reservations
+    * cancel_reservations
+  * wasm.v2
+    * Section for included new WASM engine which is currently disabled.
+  * vacancy
+    * Section for configuration to allow variable pricing based on demand.
+    * This is currently set to not change pricing for the 2.0.0 release.
+
+## Removed
+* config-example.toml
+  * rpc_server (moved functionality to casper-sidecar)
+
 ## 1.5.8 - 14653
 ### casper-node 1.5.8
 

@@ -384,7 +384,7 @@ address = '0.0.0.0:8888'
 
 # The global max rate of requests (per second) before they are limited.
 # Request will be delayed to the next 1 second bucket once limited.
-qps_limit = 100
+qps_limit = 20
 
 # Specifies which origin will be reported as allowed by REST server.
 #
