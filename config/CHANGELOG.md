@@ -11,6 +11,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [comment]: <> (Fixed:      any bug fixes)
 [comment]: <> (Security:   in case of vulnerabilities)
 
+## 1.5.8 - 14653
+### casper-node 1.5.8
+
+## Changed
+* config-example.toml
+  * network
+    * known_addresses
+* chainspec.toml
+  * protocol
+    * version
+    * activation_point
+  * system_costs.auction_costs
+    * add_bid
+    * activate_bid
+
+## Added
+* chainspec.toml
+  * core
+    * minimum_bid_amount
+
 ## 1.5.7 - 14544
 ### casper-node 1.5.7
 
