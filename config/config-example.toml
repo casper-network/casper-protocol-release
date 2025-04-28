@@ -8,13 +8,17 @@
 
 # Historical sync behavior for this node. Options are:
 #  'genesis'  (node will attempt to acquire all block data back to genesis)
+# note: as time goes on, the time to sync all the way back to genesis takes progressively longer.
 #  'ttl'      (node will attempt to acquire all block data to comply with time to live enforcement)
-#  'nosync'   (node will only acquire blocks moving forward)
 # note: ttl is a chainsepc configured behavior on a given network; consult the `max_ttl` chainspec setting
 #       (it is currently ~18 hours by default on production and production-like networks but subject to change).
+#  'nosync'   (node will only acquire blocks moving forward)
 # note: `nosync` is incompatible with validator behavior; a nosync node is prevented from participating
 #        in consensus / switching to validate mode. it is primarily for lightweight nodes that are
 #        only interested in recent activity.
+#  'isolated' (node will initialize without peers and will not accept peers)
+# note: an isolated node will not connect to, sync with, or keep up with the network, but will respond to
+#       binary port, rest server, event server, and diagnostic port connections.
 sync_handling = 'ttl'
 
 # Idle time after which the syncing process is considered stalled.
@@ -187,7 +191,7 @@ bind_address = '0.0.0.0:35000'
 #
 # Multiple addresses can be given and the node will attempt to connect to each, requiring at least
 # one connection.
-known_addresses = ['34.192.231.34:35000','47.88.87.63:35000','35.152.42.229:35000','99.81.225.72:35000','54.180.220.20:35000','15.235.53.173:35000','15.235.53.233:35000','178.162.231.183:35000','84.16.224.170:35000','88.218.224.93:35000','15.235.14.86:35000','15.235.53.230:35000','65.108.101.62:35000','45.14.135.77:35000','96.224.21.29:35000','51.21.74.37:35000','162.55.101.140:35000','190.2.154.60:35000','95.217.117.155:35000','45.82.65.34:35000','168.119.211.235:35000','144.217.255.202:35000','65.109.58.221:35000']
+known_addresses = ['3.225.137.28:35000','3.231.187.43:35000']
 
 # Minimum number of fully-connected peers to consider network component initialized.
 min_peers_for_initialization = 3
@@ -245,8 +249,15 @@ tarpit_duration = '10 minutes'
 # legacy nodes running this software.
 tarpit_chance = 0.2
 
-# How long peers remain blocked after they get blocklisted.
-blocklist_retain_duration = '10 minutes'
+# Minimum time a peer is kept on block list before being redeemed. The actual
+# timeout duration is calculated by selecting a random value between
+# <blocklist_retain_min_duration, blocklist_retain_max_duration>.
+blocklist_retain_min_duration = '2 minutes'
+
+# Maximum time a peer is kept on block list before being redeemed. The actual
+# timeout duration is calculated by selecting a random value between
+# <blocklist_retain_min_duration, blocklist_retain_max_duration>.
+blocklist_retain_max_duration = '10 minutes'
 
 # Identity of a node
 #
@@ -264,12 +275,12 @@ blocklist_retain_duration = '10 minutes'
 [network.estimator_weights]
 consensus = 0
 block_gossip = 1
-deploy_gossip = 0
+transaction_gossip = 0
 finality_signature_gossip = 1
 address_gossip = 0
 finality_signature_broadcasts = 0
-deploy_requests = 1
-deploy_responses = 0
+transaction_requests = 1
+transaction_responses = 0
 legacy_deploy_requests = 1
 legacy_deploy_responses = 0
 block_requests = 1
@@ -296,68 +307,63 @@ execution_results_responses = 0
 # secret_key = "local_node.pem"
 # ca_certificate = "ca_cert.pem"
 
-# ==================================================
-# Configuration options for the JSON-RPC HTTP server
-# ==================================================
-[rpc_server]
 
-# Flag which enables the JSON-RPC HTTP server.
+# ==================================================
+# Configuration options for the BinaryPort server
+# ==================================================
+[binary_port_server]
+
+# Flag which enables the BinaryPort server.
 enable_server = true
 
-# Listening address for JSON-RPC HTTP server.  If the port is set to 0, a random port will be used.
-#
-# If the specified port cannot be bound to, a random port will be tried instead.  If binding fails,
-# the JSON-RPC HTTP server will not run, but the node will be otherwise unaffected.
-#
-# The actual bound address will be reported via a log line if logging is enabled.
-address = '0.0.0.0:7777'
+# Listening address for BinaryPort server.
+address = '0.0.0.0:7779'
+
+# Flag that enables the `AllValues` get request. Disabled by default, because it can potentially be abused to retrieve huge amounts of data and clog the node.
+allow_request_get_all_values = false
+
+# Flag that enables the `Trie` get request. Disabled by default, because it can potentially be abused to retrieve huge amounts of data and clog the node.
+allow_request_get_trie = false
+
+# Flag that enables the `TrySpeculativeExec` request. Disabled by default.
+allow_request_speculative_exec = false
+
+# Maximum size of a message in bytes.
+max_message_size_bytes = 4_194_304
+
+# Maximum number of connections to the server.
+max_connections = 5
 
 # The global max rate of requests (per second) before they are limited.
-# Request will be delayed to the next 1 second bucket once limited.
-qps_limit = 50
+# The implementation uses a sliding window algorithm.
+qps_limit = 110
 
-# Maximum number of bytes to accept in a single request body.
-max_body_bytes = 2_621_440
+# Initial time given to a connection before it expires
+initial_connection_lifetime = '10 seconds'
 
-# Specifies which origin will be reported as allowed by RPC server.
-#
-# If left empty, CORS will be disabled.
-# If set to '*', any origin is allowed.
-# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
-cors_origin = ''
+#The amount of time which is given to a connection to extend it's lifetime when a valid
+# [`Command::Get(GetRequest::Record)`] is sent to the node
+get_record_request_termination_delay = '0 seconds'
 
+#The amount of time which is given to a connection to extend it's lifetime when a valid
+#[`Command::Get(GetRequest::Information)`] is sent to the node
+get_information_request_termination_delay = '5 seconds'
 
-# ========================================================================
-# Configuration options for the speculative execution JSON-RPC HTTP server
-# ========================================================================
-[speculative_exec_server]
+#The amount of time which is given to a connection to extend it's lifetime when a valid
+#[`Command::Get(GetRequest::State)`] is sent to the node
+get_state_request_termination_delay = '0 seconds'
 
-# Flag which enables the speculative execution JSON-RPC HTTP server.
-enable_server = false
+#The amount of time which is given to a connection to extend it's lifetime when a valid
+#[`Command::Get(GetRequest::Trie)`] is sent to the node
+get_trie_request_termination_delay = '0 seconds'
 
-# Listening address for speculative execution JSON-RPC HTTP server.  If the port
-# is set to 0, a random port will be used.
-#
-# If the specified port cannot be bound to, a random port will be tried instead.
-# If binding fails, the speculative execution JSON-RPC HTTP server will not run,
-# but the node will be otherwise unaffected.
-#
-# The actual bound address will be reported via a log line if logging is enabled.
-address = '0.0.0.0:7778'
+#The amount of time which is given to a connection to extend it's lifetime when a valid
+#[`Command::TryAcceptTransaction`] is sent to the node
+accept_transaction_request_termination_delay = '24 seconds'
 
-# The global max rate of requests (per second) before they are limited.
-# Request will be delayed to the next 1 second bucket once limited.
-qps_limit = 1
-
-# Maximum number of bytes to accept in a single request body.
-max_body_bytes = 2_621_440
-
-# Specifies which origin will be reported as allowed by speculative execution server.
-#
-# If left empty, CORS will be disabled.
-# If set to '*', any origin is allowed.
-# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
-cors_origin = ''
+#The amount of time which is given to a connection to extend it's lifetime when a valid
+#[`Command::TrySpeculativeExec`] is sent to the node
+speculative_exec_request_termination_delay = '0 seconds'
 
 
 # ==============================================
@@ -378,7 +384,7 @@ address = '0.0.0.0:8888'
 
 # The global max rate of requests (per second) before they are limited.
 # Request will be delayed to the next 1 second bucket once limited.
-qps_limit = 10
+qps_limit = 100
 
 # Specifies which origin will be reported as allowed by REST server.
 #
@@ -589,27 +595,27 @@ max_global_state_size = 2_089_072_132_096
 #enable_manual_sync = true
 
 
-# =============================================
-# Configuration options for the deploy acceptor
-# =============================================
-[deploy_acceptor]
+# ==================================================
+# Configuration options for the transaction acceptor
+# ==================================================
+[transaction_acceptor]
 
-# The leeway allowed when considering whether a deploy is future-dated or not.
+# The leeway allowed when considering whether a transaction is future-dated or not.
 #
-# To accommodate minor clock drift, deploys whose timestamps are within `timestamp_leeway` in the
+# To accommodate minor clock drift, transactions whose timestamps are within `timestamp_leeway` in the
 # future are still acceptable.
 #
 # The maximum value to which `timestamp_leeway` can be set is defined by the chainspec setting
-# `deploys.max_timestamp_leeway`.
+# `transaction.max_timestamp_leeway`.
 timestamp_leeway = '2 seconds'
 
 
 # ===========================================
-# Configuration options for the deploy buffer
+# Configuration options for the transaction buffer
 # ===========================================
-[deploy_buffer]
+[transaction_buffer]
 
-# The interval of checking for expired deploys.
+# The interval of checking for expired transactions.
 expiry_check_interval = '1 minute'
 
 
