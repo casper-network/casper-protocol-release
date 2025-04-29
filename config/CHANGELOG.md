@@ -14,7 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## 2.0.0 - 17889
 ### casper-node 2.0.0-a7e4ff1
 
-## This was a massive breaking change update and the change log is calling out major pieces but not exhaustive.
+As a major release, 2.0 includes many changes large and small, including a few breaking changes. 
+The following changelog captures significant new and altered functionality and capabilities but is not exhaustive.
 
 ## Changed
 * config-example.toml
