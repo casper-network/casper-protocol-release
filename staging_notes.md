@@ -20,7 +20,7 @@ All nodes participating in this upgrade need staged prior to this point.
 ### New debian repo
 
 If you have not setup your server to pull from the new debian repo (repo.casper.network), please follow instructions
-at https://repo.casper.network to point there.  
+at [https://repo.casper.network](https://repo.casper.network) to point there.  
 
 ### casper-sidecar
 
@@ -92,7 +92,7 @@ is a background process and de-prioritized compared to running the network.
 If you have modifications to config.toml that you wish to perform, a `replace.toml` file can be created to assist with this. 
 This file can be used during staging to automate the replace when a `config.toml` file is made from `config-example.toml` during staging.
 
-It should be a minimal version of `config.toml` with only files you wish to replace. And example to change `allow_request_get_all_values`
+It should be a minimal version of `config.toml` with only files you wish to replace. An example to change `allow_request_get_all_values`
 is below:
 
 ```toml
@@ -100,7 +100,7 @@ is below:
 allow_request_get_all_values = true
 ```
 
-I prefer to keep `replace.toml` (filename is not important) in `/etc/casper/` with my other config files.
+A good location to store`replace.toml` (filename is not important) is in `/etc/casper/`, the root of other config files.
 
 To replace when staging protocol upgrades:
 ```bash
@@ -143,7 +143,7 @@ Error: TOML parse error at line 194, column 61
 invalid literal string
 ```
 
-Example of a field I "accidentally" added to the config that doesn't belong:
+Example of a field added to the config that doesn't belong:
 
 ```bash
 $ ./casper-node validate-config ../config/config-example.toml 
