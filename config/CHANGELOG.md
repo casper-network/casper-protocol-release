@@ -22,7 +22,8 @@ The following changelog captures significant new and altered functionality and c
   * network
     * known_addresses
     * blocklist_retain_duration
-      * Changed to min and max times to allow a more randomized timing of block list between these values.
+      * Changed to min and max times. Each time a peer is blocked a value is randomly chosen between these values. 
+      * This smooths recovery from network partitioning and various other edge cases.
     * estimator_weights
       * `deploy` to `transaction` naming updates
   * deploy_acceptor -> transaction_acceptor
