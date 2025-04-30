@@ -22,6 +22,18 @@ All nodes participating in this upgrade need staged prior to this point.
 If you have not setup your server to pull from the new debian repo (repo.casper.network), please follow instructions
 at [https://repo.casper.network](https://repo.casper.network) to point there.  
 
+### New staging files location
+
+`/etc/casper/network_configs` stores casper.conf and casper-test.conf. Both of these config files need updated. This can be done by installing a new version of `casper-node-launcher` from the new debian repo added above. However, this will stop the node and start it again.
+
+No functional changes are needed for casper-node-launcher so this can also be down by just downloading the new files:
+
+```
+cd /etc/casper/network_configs
+sudo -u casper curl -JLO https://genesis.casper.network/casper/casper.conf
+sudo -u casper curl -JLO https://genesis.casper.network/casper-test/casper-test.conf
+```
+
 ### casper-sidecar
 
 The `RPC` interface on port 7777 has been removed from the `casper-node` and moved to the `casper-sidecar` process.
