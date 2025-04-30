@@ -26,7 +26,7 @@ at [https://repo.casper.network](https://repo.casper.network) to point there.
 
 `/etc/casper/network_configs` stores casper.conf and casper-test.conf. Both of these config files need updated. This can be done by installing a new version of `casper-node-launcher` from the new debian repo added above. However, this will stop the node and start it again.
 
-No functional changes are needed for casper-node-launcher so this can also be down by just downloading the new files:
+No functional changes are needed for casper-node-launcher so this can also be done by just downloading the new files:
 
 ```
 cd /etc/casper/network_configs
